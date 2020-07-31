@@ -2,6 +2,7 @@ package com.testing.gherkinsDefinitions;
 
 import com.testing.serenitySteps.BookerSteps;
 import cucumber.api.DataTable;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
@@ -23,5 +24,30 @@ public class BookerDefinitions {
   @And("^the amount of Booking Ids is \"([^\"]*)\"$")
   public void theAmountOfBookingIdsIs(Integer amount) {
     BookerSteps.validateAmountOfBookingIds(amount);
+  }
+
+  @When("^the user requests booking with following data:$")
+  public void theUserRequestsBookingWithFollowingData(DataTable dataTable) throws IOException {
+    BookerSteps.createBooking(dataTable);
+  }
+
+  @When("^the user gets the requested booking$")
+  public void theUserGetsTheRequestedBooking() {
+    BookerSteps.getBookin();
+  }
+
+  @When("^the user requests to update booking with following data:$")
+  public void theUserRequestsToUpdateBookingWithFollowingData(DataTable dataTable) throws IOException {
+    BookerSteps.updateBooking(dataTable);
+  }
+
+  @When("^the user requests to partially update booking with following data:$")
+  public void theUserRequestsToPartiallyUpdateBookingWithFollowingData(DataTable dataTable) throws IOException {
+    BookerSteps.updateBookingPartially(dataTable);
+  }
+
+  @When("^the user deletes the booking$")
+  public void theUserDeletesTheBooking() {
+    BookerSteps.deleteBooking();
   }
 }
